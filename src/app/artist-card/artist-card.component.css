@@ -1,0 +1,15 @@
+div.card-body {
+    display: none;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 3rem;
+}
+
+div.card:hover img.card-img-top {
+    opacity: 0.2;
+}
+
+div.card:hover div.card-body{
+    display: inline;
+}

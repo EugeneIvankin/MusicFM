@@ -1,0 +1,32 @@
+div {
+    background-color: black;  
+  }
+  
+  h1.navbar-brand {
+    color: red;
+  }
+  
+  .navbar-brand {
+    cursor: pointer;
+  }
+  
+  a.navbar-brand {
+    color: white;
+  }
+  
+  a.navbar-brand:hover {
+    color: red;
+  }
+  
+  form {
+    margin: 0 auto;
+    outline: none;
+  }
+  
+  input.form-control.mr-sm-2 {
+    font-family: Helvetica, 'FontAwesome', sans-serif;
+    width: 35vw;
+  }
+
+
+  
