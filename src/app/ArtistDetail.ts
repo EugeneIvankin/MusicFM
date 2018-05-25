@@ -1,16 +1,12 @@
 export class ArtistDetail {
     name: string;
-    // image:
-    stats: {
-        listeners: string;
-    };
+    image: string;
+    listeners: string;
     // similar: {
     //     artist: ///
     // };
     // tags: {
     //     tag: ////
     // };
-    bio: {
-        content: string;
-    };
+    bio: string;
 }

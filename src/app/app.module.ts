@@ -8,8 +8,11 @@ import { ArtistDetailComponent } from './artist-detail/artist-detail.component';
 import { AlbumDetailComponent } from './album-detail/album-detail.component';
 import { AlbumCardComponent } from './album-card/album-card.component';
 import {Routes, RouterModule} from '@angular/router';
+import { ArtistService } from './artist.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
+  { path: '', component: DashboardTopArtistsComponent},
   { path: 'artist_detail', component: ArtistDetailComponent},
   { path: 'album_detail', component: AlbumDetailComponent},
   { path: '**', component: DashboardTopArtistsComponent}
@@ -26,9 +29,10 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [ArtistService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

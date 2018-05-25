@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TOP_ARTISTS } from '../mock-top-artist';
+import { ArtistService } from '../artist.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ArtistDetail } from '../ArtistDetail';
+
 
 @Component({
   selector: 'app-artist-detail',
@@ -8,6 +12,28 @@ import { TOP_ARTISTS } from '../mock-top-artist';
 })
 export class ArtistDetailComponent {
 
-  topArtists = TOP_ARTISTS;
+  private querySubscription: Subscription;
+  private artistName: string;
+  private artist: ArtistDetail;
+
+  constructor(private artistService: ArtistService, private route: ActivatedRoute) {
+    this.querySubscription = route.queryParams.subscribe(
+      (queryParam: any) => {
+        this.artistName = queryParam['name'];
+      }
+  );
+    this.getFullInfoAboutArtist();
+  }
+
+  getFullInfoAboutArtist() {
+    this.artistService.getFullInfoAboutArtist(this.artistName)
+    .subscribe( artist => {
+      this.artist = new ArtistDetail;
+      this.artist.name = artist['artist'].name;
+      this.artist.listeners = artist['artist']['stats'].listeners;
+      this.artist.image = artist['artist'].image[4]['#text'];
+      this.artist.bio = artist['artist'].bio.content;
+    });
+  }
 
 }
