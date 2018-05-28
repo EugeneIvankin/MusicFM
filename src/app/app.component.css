@@ -1,31 +1,56 @@
 div {
-    background-color: black;  
-  }
+  background-color: black;  
+}
   
-  h1.navbar-brand {
-    color: red;
-  }
-  
-  .navbar-brand {
-    cursor: pointer;
-  }
-  
-  a.navbar-brand {
-    color: white;
-  }
-  
-  a.navbar-brand:hover {
-    color: red;
-  }
-  
-  form {
-    margin: 0 auto;
-    outline: none;
-  }
-  
-  input.form-control.mr-sm-2 {
-    font-family: Helvetica, 'FontAwesome', sans-serif;
-    width: 35vw;
-  }
+h1.navbar-brand {
+  color: red;
+}
 
+.navbar-brand {
+  cursor: pointer;
+}
+
+a.navbar-brand {
+  color: white;
+}
+
+a.navbar-brand:hover {
+  color: red;
+}
+
+form {
+  margin: 0 auto;
+  outline: none;
+}
+
+input.form-control.mr-sm-2 {
+  font-family: Helvetica, 'FontAwesome', sans-serif;
+  width: 35vw;
+}
+
+ul {
+  position: absolute;
+  z-index: 1;
+  top: 3.2rem;
+  width: 35vw;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+img {
+  margin-top: 0.2rem;
+}
+
+.list-group-item {
+  padding: 0.5rem 1.25rem;
+}
+
+.list-group-item:hover {
+  background-color: whitesmoke;
+}
   

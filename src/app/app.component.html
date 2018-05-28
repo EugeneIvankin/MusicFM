@@ -3,7 +3,13 @@
     <div class="container">
       <h1 class="navbar-brand"> Music.FM </h1>
       <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" name="searchArtist" placeholder="Search Artist"/>
+        <input class="form-control mr-sm-2" type="search" #searchBox (keyup)="search(searchBox.value)" placeholder="Search Artist"/>
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let artist of artists$ | async" routerLink="artist_detail/{{artist.name}}" (click)="open()">
+            <img class="rounded float-left" src={{artist.image}} alt={{artist.name}}>
+            <p>{{artist.name}}</p>
+          </li>
+        </ul>
       </form>
     </div>
   </div>
