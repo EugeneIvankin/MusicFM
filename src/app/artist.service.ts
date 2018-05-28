@@ -16,6 +16,11 @@ export class ArtistService {
   constructor(
     private http: HttpClient) { }
 
+  searchArtists(term) {
+    return this.http.get('http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + term + '&api_key='
+    + this.key + '&format=json&limit=5');
+  }
+
   getTopArtists () {
     return this.http.get(this.getTopArtistsURL);
   }

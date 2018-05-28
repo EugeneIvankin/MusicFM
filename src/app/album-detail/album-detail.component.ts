@@ -18,16 +18,17 @@ export class AlbumDetailComponent implements OnInit {
   private tracks: string [];
 
   constructor(private artistService: ArtistService, private route: ActivatedRoute) {
-    this.querySubscription = route.queryParams.subscribe(
-    (queryParam: any) => {
-      this.artistName = queryParam['artist_name'];
-      this.albumName = queryParam['album_name'];
-    }
-);
-  this.getFullInfoAboutAlbum();
-}
+  }
 
   ngOnInit() {
+    this.querySubscription = this.route.queryParams
+    .subscribe(
+      (queryParam: any) => {
+        this.artistName = queryParam['artist_name'];
+        this.albumName = queryParam['album_name'];
+      }
+    );
+    this.getFullInfoAboutAlbum();
   }
 
   getFullInfoAboutAlbum() {

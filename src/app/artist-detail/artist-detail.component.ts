@@ -12,8 +12,7 @@ import { Album } from '../Album';
   templateUrl: './artist-detail.component.html',
   styleUrls: ['./artist-detail.component.css']
 })
-export class ArtistDetailComponent {
-
+export class ArtistDetailComponent implements OnInit {
   private querySubscription: Subscription;
   private artistName: string;
   private artist: ArtistDetail;
@@ -21,17 +20,20 @@ export class ArtistDetailComponent {
   private topAlbums: Album [];
 
   constructor(private artistService: ArtistService, private route: ActivatedRoute) {
-    this.querySubscription = route.params.subscribe( queryParams => {
-        console.log(queryParams['name']);
-        this.artistName = queryParams['name'];
+  }
+
+  ngOnInit(): void {
+    this.querySubscription = this.route.params
+    .subscribe( queryParams => {
+      this.artistName = queryParams['name'];
+      this.getFullInfoAboutArtist();
+      this.getTopAlbums();
+      window.scrollTo(0, 0);
       }
     );
-    this.getFullInfoAboutArtist();
-    this.getTopAlbums();
   }
 
   getFullInfoAboutArtist() {
-    console.log(this.artistName);
     this.artistService.getFullInfoAboutArtist(this.artistName)
     .subscribe( artist => {
       this.artist = new ArtistDetail;

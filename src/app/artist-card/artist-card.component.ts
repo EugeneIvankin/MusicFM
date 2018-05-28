@@ -8,10 +8,11 @@ import { Artist } from '../Artist';
   templateUrl: './artist-card.component.html',
   styleUrls: ['./artist-card.component.css']
 })
-export class ArtistCardComponent  {
-   @Input() artist: Artist;
 
-   constructor(private router: Router) {}
+export class ArtistCardComponent  {
+  @Input() artist: Artist;
+
+  constructor(private router: Router) {}
 
   open() {
     this.router.navigate(['/artist_detail', this.artist.name]);

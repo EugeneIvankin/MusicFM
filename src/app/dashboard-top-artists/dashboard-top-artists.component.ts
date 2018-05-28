@@ -10,8 +10,8 @@ import { ArtistService } from '../artist.service';
 })
 export class DashboardTopArtistsComponent implements OnInit {
 
-   topArtists: Artist [];
-   topArtist: Artist;
+  topArtists: Artist [];
+  topArtist: Artist;
 
   constructor(private artistService: ArtistService) {
    }
