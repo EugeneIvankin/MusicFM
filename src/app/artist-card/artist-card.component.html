@@ -1,8 +1,8 @@
-<div class="card" style="width: 13rem;">
-    <img class="card-img-top" src={{artist?.image}} alt={{artist?.name}}>
-    <div class="card-body">
-      <h5 class="card-title">{{artist?.name}}</h5>
-      <p class="card-text">{{artist?.listeners}}</p>
+<div class="card">
+    <img class="card-img" src={{artist?.image}} alt={{artist?.name}}>
+    <div class="card-img-overlay">
+      <h3 class="card-title">{{artist?.name}}</h3>
+      <p class="card-text"><i class="fas fa-headphones"></i> {{artist?.listeners}}</p>
       <button class="btn btn-lg btn-outline-primary" (click)="open()">
         More... <i class="fas fa-chevron-right"></i>
       </button>

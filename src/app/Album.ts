@@ -1,5 +1,5 @@
 export class Album {
-    id: number;
     name: string;
-    numberOfTraks: number;
+    image: string;
+    artist: string;
 }

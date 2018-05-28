@@ -1,15 +1,35 @@
-div.card-body {
-    display: none;
-    width: 100%;
-    position: absolute;
-    text-align: center;
-    top: 3rem;
+.card {
+    margin-bottom: 2rem;
 }
 
-div.card:hover img.card-img-top {
+.card-img-overlay {
+    display: none;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+div.card:hover img.card-img {
     opacity: 0.2;
 }
 
-div.card:hover div.card-body{
-    display: inline;
+div.card:hover .card-img-overlay{
+    display: flex;
 }
+
+p {
+    font-size: 1.25rem;
+}
+
+button.btn.btn-lg.btn-outline-primary{
+    color: red;
+    border-color: red;
+}
+
+button.btn.btn-lg.btn-outline-primary:hover {
+    color: #fff;
+    background-color: red;
+    border-color: red;
+}    

@@ -1,3 +1,35 @@
-<p>
-  album-detail works!
-</p>
+<div class="container">
+  <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="/artist_detail/{{album?.artist}}">{{album?.artist}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{album?.name}}</li>
+    </ol>
+  </nav>
+  <div class="row">
+    <div class="col-auto">
+      <img class="card-img" src={{album?.image}} alt={{album?.name}}>
+    </div>
+    <div class="col-auto">
+      <h5 class="card-title">Album Name: {{album?.name}}</h5>
+      <p class="card-text">Artist: {{album?.artist}}</p>
+      <p class="card-text"><i class="fas fa-headphones"></i> listeners: {{album?.listeners}}</p>
+      <p class="card-text"><i class="fas fa-dollar-sign"></i> playcount: {{album?.playcount}}</p>
+      <p class="card-text">{{album?.tags}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3>Tracks:</h3>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let track of tracks">{{track}}</li>
+      </ul>
+    </div>  
+  </div>
+  <div class="row">
+    <div class="col">
+      <h3>Description</h3>
+      <p>{{album?.wiki}}</p>
+    </div>
+  </div>
+</div>

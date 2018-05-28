@@ -10,10 +10,11 @@ import { AlbumCardComponent } from './album-card/album-card.component';
 import {Routes, RouterModule} from '@angular/router';
 import { ArtistService } from './artist.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SimilarArtistCardComponent } from './similar-artist-card/similar-artist-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardTopArtistsComponent},
-  { path: 'artist_detail', component: ArtistDetailComponent},
+  { path: 'artist_detail/:name', component: ArtistDetailComponent},
   { path: 'album_detail', component: AlbumDetailComponent},
   { path: '**', component: DashboardTopArtistsComponent}
 ];
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     ArtistCardComponent,
     ArtistDetailComponent,
     AlbumDetailComponent,
-    AlbumCardComponent
+    AlbumCardComponent,
+    SimilarArtistCardComponent
   ],
   imports: [
     BrowserModule,

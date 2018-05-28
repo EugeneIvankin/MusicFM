@@ -1,0 +1,22 @@
+.breadcrumb {
+    margin-bottom: 0;
+    background-color: white;
+    border-radius: 0;
+}
+
+a {
+    color: red;
+}
+
+h3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+div.container>div.row+div.row+div.row>div.col>h3 {
+    margin-top: 0  
+}
+
+div.col>p {
+    margin-bottom: 2rem;
+}

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Artist } from '../Artist';
 import { Router } from '@angular/router';
+import { Artist } from '../Artist';
 
 
 @Component({
@@ -14,11 +14,6 @@ export class ArtistCardComponent  {
    constructor(private router: Router) {}
 
   open() {
-    this.router.navigate(['artist_detail'],
-      {
-        queryParams: {
-          'name': this.artist.name
-        }
-      });
+    this.router.navigate(['/artist_detail', this.artist.name]);
   }
 }
