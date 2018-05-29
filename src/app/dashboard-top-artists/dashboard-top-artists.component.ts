@@ -11,10 +11,9 @@ import { ArtistService } from '../artist.service';
 export class DashboardTopArtistsComponent implements OnInit {
 
   topArtists: Artist [];
-  topArtist: Artist;
 
-  constructor(private artistService: ArtistService) {
-   }
+  constructor(
+    private artistService: ArtistService) {}
 
   ngOnInit() {
     this.getTopArtists();
@@ -22,15 +21,7 @@ export class DashboardTopArtistsComponent implements OnInit {
 
   getTopArtists() {
     this.artistService.getTopArtists()
-      .subscribe( topArtist => {
-        this.topArtists = topArtist['artists']['artist'].map(artist => {
-          this.topArtist = new Artist;
-          this.topArtist.name = artist.name;
-          this.topArtist.listeners = artist.listeners;
-          this.topArtist.image = artist.image[4]['#text'];
-          return this.topArtist;
-        });
-      });
+      .subscribe( result => this.topArtists = result);
   }
 
 }

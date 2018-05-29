@@ -6,4 +6,5 @@ export class AlbumDetail {
     playcount: string;
     tags: string;
     wiki: string;
+    tracks: string[];
 }

@@ -33,17 +33,9 @@ export class AlbumDetailComponent implements OnInit {
 
   getFullInfoAboutAlbum() {
     this.artistService.getFullInfoAboutAlbum(this.artistName, this.albumName)
-    .subscribe( alb => {
-        this.album = new AlbumDetail;
-        this.album.name = alb['album'].name;
-        this.album.image = alb['album'].image[3]['#text'];
-        this.album.artist = alb['album'].artist;
-        this.album.listeners = alb['album'].listeners;
-        this.album.playcount = alb['album'].playcount;
-        this.album.tags = alb['album'].tags.tag.map( tag => '#' + tag.name );
-        this.tracks = alb['album'].tracks.track.map( track => track.name +
-           ' ( ' + Math.round(track.duration / 60) + 'min ' + track.duration % 60  + 's ) ');
-        this.album.wiki = alb['album'].wiki.content;
-    });
+    .subscribe( result => {
+      this.album = result;
+      this.tracks = result.tracks;
+     });
   }
 }

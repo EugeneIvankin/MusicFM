@@ -13,6 +13,7 @@ export class AlbumCardComponent  {
   constructor(private router: Router) { }
 
   open() {
+    console.log(this.album);
     this.router.navigate(['album_detail'],
       {
         queryParams: {
