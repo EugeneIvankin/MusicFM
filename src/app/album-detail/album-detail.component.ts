@@ -35,7 +35,7 @@ export class AlbumDetailComponent implements OnInit {
     this.artistService.getFullInfoAboutAlbum(this.artistName, this.albumName)
     .subscribe( result => {
       this.album = result;
-      //this.tracks = result.tracks;
+      this.tracks = result.tracks;
      });
   }
 }
