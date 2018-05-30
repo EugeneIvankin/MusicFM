@@ -12,10 +12,13 @@ import {Routes, RouterModule} from '@angular/router';
 import { ArtistService } from './artist.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SimilarArtistCardComponent } from './similar-artist-card/similar-artist-card.component';
+import { BreadcrumsComponent } from './breadcrums/breadcrums.component';
+import { DashboardSearchArtistsComponent } from './dashboard-search-artists/dashboard-search-artists.component';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardTopArtistsComponent},
   { path: 'artist_detail/:name', component: ArtistDetailComponent},
+  { path: 'search_artist/:name', component: DashboardSearchArtistsComponent},
   { path: 'album_detail', component: AlbumDetailComponent},
   { path: '**', component: DashboardTopArtistsComponent}
 ];
@@ -28,7 +31,9 @@ const appRoutes: Routes = [
     ArtistDetailComponent,
     AlbumDetailComponent,
     AlbumCardComponent,
-    SimilarArtistCardComponent
+    SimilarArtistCardComponent,
+    BreadcrumsComponent,
+    DashboardSearchArtistsComponent
   ],
   imports: [
     BrowserModule,

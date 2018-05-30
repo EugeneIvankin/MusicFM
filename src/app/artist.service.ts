@@ -7,12 +7,11 @@ import { MessageService } from './message.service';
 import { ArtistDetail } from './ArtistDetail';
 import { Album } from './Album';
 import { AlbumDetail } from './AlbumDetail';
+import * as lastfmAPI from './lastfm.config';
 
 
 @Injectable()
 export class ArtistService {
-
-  private key = '4101158aa507942f3a32c3b6ea467090';
 
   constructor(
     private http: HttpClient,
@@ -22,8 +21,7 @@ export class ArtistService {
     if (!term.trim()) {
       return of([]);
     }
-    return this.http.get<Artist[]>('http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + term + '&api_key=' +
-    this.key + '&format=json&limit=5')
+    return this.http.get<Artist[]>(lastfmAPI.serchArtistsURl + term)
     .pipe(map(result => {
         const artistsList = result['results'].artistmatches.artist;
           return artistsList.map(artist => {
@@ -35,9 +33,25 @@ export class ArtistService {
       }));
   }
 
+  searchAllArtists(artist: string): Observable<Artist[]> {
+    if (!artist.trim()) {
+      return of([]);
+    }
+    return this.http.get<Artist[]>(lastfmAPI.serchAllArtistsURl + artist)
+    .pipe(map(result => {
+        const artistsList = result['results'].artistmatches.artist;
+          return artistsList.map(art => {
+            return {
+              name: art.name,
+              listeners: art.listeners,
+              image: art.image[4]['#text']
+            };
+          });
+      }));
+  }
+
   getTopArtists(): Observable<Artist[]> {
-    return this.http.get<Artist[]>('http://ws.audioscrobbler.com/2.0/?method=chart.gettopartists&api_key=' + this.key +
-    '&format=json&limit=40')
+    return this.http.get<Artist[]>(lastfmAPI.getTopArtistsURL)
     .pipe(map(result => {
       const topArtistsList = result['artists'].artist;
       return topArtistsList.map(artist => {
@@ -51,8 +65,7 @@ export class ArtistService {
   }
 
   getFullInfoAboutArtist(artistName: string): Observable<ArtistDetail> {
-    return this.http.get<ArtistDetail>('http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artistName +
-    '&api_key=' + this.key + '&format=json')
+    return this.http.get<ArtistDetail>(lastfmAPI.getFullInfoAboutArtistURL + artistName)
     .pipe(map(result => {
       return {
         name: result['artist'].name,
@@ -74,8 +87,7 @@ export class ArtistService {
   }
 
   getSimiralArtists(artistName: string): Observable<Artist[]> {
-    return this.http.get<Artist[]>('http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artistName +
-    '&api_key=' + this.key + '&format=json')
+    return this.http.get<Artist[]>(lastfmAPI.getSimiralArtistsURL + artistName)
     .pipe(map(result => {
       const similarArtists = result['artist'].similar.artist;
       similarArtists.pop();
@@ -89,8 +101,7 @@ export class ArtistService {
   }
 
   getTopAlbums(artistName: string): Observable<Album[]> {
-    return this.http.get<Album[]>('http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=' + artistName +
-    '&api_key=' + this.key + '&format=json&limit=4')
+    return this.http.get<Album[]>(lastfmAPI.getTopAlbumsURL + artistName)
     .pipe(map(result => {
       const topAlbums = result['topalbums'].album;
       return topAlbums.map(album => {
@@ -104,8 +115,7 @@ export class ArtistService {
   }
 
   getFullInfoAboutAlbum(artistName, albumName): Observable<AlbumDetail> {
-    return this.http.get<AlbumDetail>('http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist=' + artistName +
-    '&api_key=' + this.key + '&album=' + albumName + '&format=json')
+    return this.http.get<AlbumDetail>(lastfmAPI.getFullInfoAboutAlbumURL + artistName + '&album=' + albumName)
     .pipe(map(result => {
       return {
         name: result['album'].name,

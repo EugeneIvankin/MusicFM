@@ -1,0 +1,7 @@
+<div class="container">
+  <app-breadcrums></app-breadcrums>
+  <h3>Result For " {{artistName}} "</h3>
+  <div class="row justify-content-center">
+    <app-artist-card class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let artist of searchAllArtists" [artist]="artist"></app-artist-card>
+  </div>     
+</div> 

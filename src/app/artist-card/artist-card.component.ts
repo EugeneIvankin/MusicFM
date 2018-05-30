@@ -12,7 +12,8 @@ import { Artist } from '../Artist';
 export class ArtistCardComponent  {
   @Input() artist: Artist;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router) {}
 
   open() {
     this.router.navigate(['/artist_detail', this.artist.name]);

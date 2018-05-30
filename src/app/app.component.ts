@@ -5,6 +5,7 @@ import { Artist } from './Artist';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +13,14 @@ import {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  name: string;
+  bool: boolean;
   title = 'app';
   artists$: Observable<Artist[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private artistService: ArtistService) {}
-
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
+  constructor(
+    private artistService: ArtistService,
+    private router: Router) {}
 
   ngOnInit() {
     this.artists$ = this.searchTerms.pipe(
@@ -31,4 +30,16 @@ export class AppComponent implements OnInit {
       );
   }
 
+  search(term: string) {
+    this.bool = true;
+    this.searchTerms.next(term);
+  }
+
+  searchArtists(term: string) {
+    this.router.navigate(['/search_artist', term]);
+  }
+
+  searchArtist() {
+    this.bool = false;
+  }
 }
