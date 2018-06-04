@@ -83,6 +83,10 @@ export class ArtistService {
           };
         }),
       };
+    }),
+    catchError(err => {
+        console.log(err);
+        return throwError(err);
     }));
   }
 

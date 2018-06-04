@@ -1,7 +1,7 @@
 <div class="card">
     <img class="card-img" src={{artist.image}} alt={{artist.name}} onError="this.src='http://www.hot-motor.ru/body/clothes/images/no_icon.png'">
     <div class="card-img-overlay">
-      <h3 class="card-title">{{artist.name}}</h3>
+      <h3 class="card-title">{{artist.name.substr(0, 20)}}</h3>
       <p class="card-text"><i class="fas fa-headphones"></i> {{artist.listeners}}</p>
       <button class="btn btn-lg btn-outline-primary" (click)="open()">
         More... <i class="fas fa-chevron-right"></i>
