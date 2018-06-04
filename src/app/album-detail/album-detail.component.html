@@ -2,7 +2,7 @@
   <app-breadcrums [artistName]='album?.artist' [albumName]='album?.name'></app-breadcrums>
   <div class="row">
     <div class="col-auto">
-      <img class="card-img" src={{album?.image}} alt={{album?.name}}>
+      <img class="card-img" src={{album?.image}} alt={{album?.name}} onError="this.src='http://www.hot-motor.ru/body/clothes/images/no_icon.png'">
     </div>
     <div class="col-auto">
       <h5 class="card-title">Album Name: {{album?.name}}</h5>
@@ -12,15 +12,17 @@
       <p class="card-text">{{album?.tags}}</p>
     </div>
   </div>
+
   <div class="row">
     <div class="col">
-      <h3>Tracks:</h3>
+      <h3>Tracks :</h3>
       <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let track of tracks">{{track}}</li>
       </ul>
     </div>  
   </div>
-  <div class="row">
+
+  <div class="row" *ngIf="album?.wiki">
     <div class="col">
       <h3>Description</h3>
       <p>{{album?.wiki}}</p>

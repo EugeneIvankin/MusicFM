@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Artist } from './Artist';
-import { Observable, of } from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { ArtistDetail } from './ArtistDetail';
@@ -71,7 +71,7 @@ export class ArtistService {
         name: result['artist'].name,
         listeners: result['artist'].stats.listeners,
         playcount: result['artist'].stats.playcount,
-        bio: result['artist'].bio.content,
+        bio: result['artist'].bio.summary.substr(0, (result['artist'].bio.summary.indexOf('<a') - 1)),
         image: result['artist'].image[4]['#text'],
         tags: result['artist'].tags.tag.map( tag => '#' + tag.name ),
         similarArtists: result['artist'].similar.artist
@@ -83,20 +83,6 @@ export class ArtistService {
           };
         }),
       };
-    }));
-  }
-
-  getSimiralArtists(artistName: string): Observable<Artist[]> {
-    return this.http.get<Artist[]>(lastfmAPI.getSimiralArtistsURL + artistName)
-    .pipe(map(result => {
-      const similarArtists = result['artist'].similar.artist;
-      similarArtists.pop();
-      return similarArtists.map(artist => {
-        return {
-          name: artist.name,
-          image: artist.image[4]['#text']
-        };
-      });
     }));
   }
 
@@ -117,18 +103,35 @@ export class ArtistService {
   getFullInfoAboutAlbum(artistName, albumName): Observable<AlbumDetail> {
     return this.http.get<AlbumDetail>(lastfmAPI.getFullInfoAboutAlbumURL + artistName + '&album=' + albumName)
     .pipe(map(result => {
+      if ('content' in result['album']) {
+          return {
+              name: result['album'].name,
+              artist: result['album'].artist,
+              listeners: result['album'].listeners,
+              playcount: result['album'].playcount,
+              wiki: result['album'].wiki.content.substr(0, (result['album'].wiki.content.indexOf('<a') - 1)),
+              image: result['album'].image[4]['#text'],
+              tags: result['album'].tags.tag.map( tag => '#' + tag.name ),
+              tracks: result['album'].tracks.track.map( track => track.name +
+                  ' ( ' + Math.round(track.duration / 60) + 'min ' + track.duration % 60  + 's ) ')
+          };
+      }
       return {
-        name: result['album'].name,
-        artist: result['album'].artist,
-        listeners: result['album'].listeners,
-        playcount: result['album'].playcount,
-        wiki: result['album'].wiki.content,
-        image: result['album'].image[4]['#text'],
-        tags: result['album'].tags.tag.map( tag => '#' + tag.name ),
-        tracks: result['album'].tracks.track.map( track => track.name +
+          name: result['album'].name,
+          artist: result['album'].artist,
+          listeners: result['album'].listeners,
+          playcount: result['album'].playcount,
+          wiki: false,
+          image: result['album'].image[4]['#text'],
+          tags: result['album'].tags.tag.map( tag => '#' + tag.name ),
+          tracks: result['album'].tracks.track.map( track => track.name +
               ' ( ' + Math.round(track.duration / 60) + 'min ' + track.duration % 60  + 's ) ')
       };
-    }));
+    }),
+        catchError(err => {
+          console.log(err);
+          return throwError(err);
+        }));
   }
 
   /**
@@ -151,9 +154,9 @@ export class ArtistService {
     };
   }
 
-  /** Log a HeroService message with the MessageService */
+  /** Log a ArtistService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('HeroService: ' + message);
+    this.messageService.add('ArtistService: ' + message);
   }
 
 }
