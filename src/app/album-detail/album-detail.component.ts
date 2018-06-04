@@ -24,7 +24,6 @@ export class AlbumDetailComponent implements OnInit {
     this.querySubscription = this.route.queryParams
     .subscribe(
       (url: any) => {
-        console.log(this.route);
         this.artistName = this.route.snapshot.url[1].path;
         this.albumName = this.route.snapshot.url[3].path;
       }
