@@ -17,9 +17,9 @@ import { DashboardSearchArtistsComponent } from './dashboard-search-artists/dash
 
 const appRoutes: Routes = [
   { path: '', component: DashboardTopArtistsComponent},
-  { path: 'artist_detail/:name', component: ArtistDetailComponent},
+  { path: 'artist/:name', component: ArtistDetailComponent},
   { path: 'search_artist/:name', component: DashboardSearchArtistsComponent},
-  { path: 'album_detail', component: AlbumDetailComponent},
+  { path: 'artist/:name/album/:name', component: AlbumDetailComponent},
   { path: '**', component: DashboardTopArtistsComponent}
 ];
 

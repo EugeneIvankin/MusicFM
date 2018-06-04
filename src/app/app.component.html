@@ -1,12 +1,12 @@
 <header>
   <div class="navbar navbar-dark">
     <div class="container">
-      <h1 class="navbar-brand"> Music.FM </h1>
+      <h1 class="navbar-brand" (click)="openDashboardArtists()"> Music.FM </h1>
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" #searchBox (keyup)="search(searchBox.value)" (keyup.enter)="searchArtists(searchBox.value); searchBox.value=''" placeholder="Search Artist"/>
         <ul *ngIf='bool && searchBox.value' class="list-group">
           <li class="list-group-item" *ngFor="let artist of artists$ | async" routerLink="artist_detail/{{artist.name}}" (click)="searchArtist()">
-            <img class="rounded float-left" src={{artist.image}} alt={{artist.name}}>
+            <img class="rounded float-left" src={{artist.image}} alt={{artist.name}} onError="this.src='http://www.hot-motor.ru/body/clothes/images/no_icon.png'">
             <p>{{artist.name}}</p>
           </li>
         </ul>
@@ -15,7 +15,9 @@
   </div>
 </header>
 
-<router-outlet></router-outlet>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
 
 <footer>
   <div class="navbar navbar-dark">

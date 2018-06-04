@@ -16,6 +16,6 @@ export class ArtistCardComponent  {
     private router: Router) {}
 
   open() {
-    this.router.navigate(['/artist_detail', this.artist.name]);
+    this.router.navigate(['/artist', this.artist.name]);
   }
 }

@@ -1,8 +1,8 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a routerLink="">Home</a></li>
     <li class="breadcrumb-item active" *ngIf='!artistName' aria-current="page">Search</li>
-    <li class="breadcrumb-item" *ngIf='albumName'><a href="/artist_detail/{{artistName}}">{{artistName}}</a></li>
+    <li class="breadcrumb-item" *ngIf='albumName'><a routerLink="/artist/{{artistName}}">{{artistName}}</a></li>
     <li class="breadcrumb-item active" *ngIf='!albumName && artistName' aria-current="page">{{artistName}}</li>
     <li class="breadcrumb-item active" *ngIf='albumName' aria-current="page">{{albumName}}</li>
   </ol>

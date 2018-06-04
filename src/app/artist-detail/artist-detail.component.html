@@ -2,7 +2,7 @@
   <app-breadcrums [artistName]='artist?.name'></app-breadcrums>
   <div class="row">
     <div class="col-auto">
-      <img class="rounded float-left" src={{artist?.image}} alt={{artist?.name}}>
+      <img class="rounded float-left" src={{artist?.image}} alt={{artist?.name}} onError="this.src='http://www.hot-motor.ru/body/clothes/images/no_icon.png'">
     </div>
     <div class="col-auto">
       <h5 class="card-title">Name: {{artist?.name}}</h5>
@@ -11,21 +11,29 @@
       <p class="card-text">{{artist?.tags}}</p>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="artist?.bio">
     <div class="col">
       <h3>Biography</h3>
       <p class="card-text">{{artist?.bio}}</p>
     </div>
   </div>
 
-  <h3>Popular Albums</h3>
-  <div class="row justify-content-center">
-    <app-album-card class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let album of topAlbums" [album]="album"></app-album-card>
+  <div class="row">
+    <div class="col">
+      <h3>Popular Albums</h3>
+      <div class="row justify-content-center">
+        <app-album-card class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let album of topAlbums" [album]="album"></app-album-card>
+      </div>
+    </div>
   </div>
 
-  <h3>Similar Artists</h3>
-  <div class="row justify-content-center">
-    <app-similar-artist-card class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let artist of similarArtists" [artist]="artist"></app-similar-artist-card>
+  <div class="row" *ngIf="artist?.similarArtists[0]">
+    <div class="col">
+      <h3>Similar Artists</h3>
+       <div class="row justify-content-center">
+          <app-similar-artist-card class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let artist of similarArtists" [artist]="artist"></app-similar-artist-card>
+       </div>
+    </div>
   </div>
 
 </div>

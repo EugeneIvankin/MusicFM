@@ -1,6 +1,11 @@
 div {
   background-color: black;  
 }
+
+.content {
+min-height: 87.7vh;
+background-color: white;
+}
   
 h1.navbar-brand {
   color: red;
@@ -44,6 +49,7 @@ p {
 
 img {
   margin-top: 0.2rem;
+  width: 34px;
 }
 
 .list-group-item {
@@ -53,4 +59,3 @@ img {
 .list-group-item:hover {
   background-color: whitesmoke;
 }
-  

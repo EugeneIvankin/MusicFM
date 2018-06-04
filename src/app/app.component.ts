@@ -42,4 +42,8 @@ export class AppComponent implements OnInit {
   searchArtist() {
     this.bool = false;
   }
+
+  openDashboardArtists() {
+    this.router.navigate(['']);
+  }
 }

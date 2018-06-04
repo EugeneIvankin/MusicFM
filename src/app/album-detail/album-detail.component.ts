@@ -23,9 +23,10 @@ export class AlbumDetailComponent implements OnInit {
   ngOnInit() {
     this.querySubscription = this.route.queryParams
     .subscribe(
-      (queryParam: any) => {
-        this.artistName = queryParam['artist_name'];
-        this.albumName = queryParam['album_name'];
+      (url: any) => {
+        console.log(this.route);
+        this.artistName = this.route.snapshot.url[1].path;
+        this.albumName = this.route.snapshot.url[3].path;
       }
     );
     this.getFullInfoAboutAlbum();
